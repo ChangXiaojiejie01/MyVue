@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+
+    <ul>
+      <li><router-link to="/" exact>根目录</router-link></li>
+      <li><router-link to="/index" exact>index目录</router-link></li>
+      <li><router-link to="/index/3" exact>index的第三层</router-link></li>
+    </ul>
+
+    <router-view></router-view>
+
+
+
+
+
+
+  </div>
+  <script src="./vue.js"></script>
+  <script src="./node_modules/vue-router/dist/vue-router.js"></script>
+  <script>
+
+    const Index = Vue.component('index',{
+      template:`
+      <h1>这里是index</h1>
+      `
+    });
+
+    const Three = Vue.component('three',{
+      template:`
+      <h1>这里是three</h1>
+      `
+    });
+
+    const router = new VueRouter({
+      routes:[
+        {path:'/',redirect:'/index'},
+        {path:'/index',component:Index},
+        {path:'/index/3',component:Three}
+      ]
+    });
+
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        
+      },
+      router,
+    })
+  </script>
+</body>
+
+</html>

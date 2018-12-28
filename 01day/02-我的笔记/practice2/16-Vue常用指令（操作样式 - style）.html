@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- 
+        v-bind:style="{}"
+        注意： color 或 'font-size' 这两个键，是 CSS 样式属性名称
+       -->
+       <!-- 注意点：
+       1.属性名如果带有-的字符，可采用驼峰命名法，或者加上单引号
+       2.设置直接样式，如果有多个，可以加上单花括号
+       3.多个属性之间用逗号隔开 -->
+       <!-- <div :style="{'background-color':bgc, 'font-size':fz+'px', color:color}">
+         此处有内容的
+       </div> -->
+       <div :style="{'background-color':bgc}">
+          此处有内容的
+        </div>
+       
+     
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+      /*
+        样式操作的两种方式：
+        1 class （推荐！！！）
+        2 style 行内样式
+      */
+
+      const vm = new Vue({
+        el:'#app',
+        data:{
+          bgc: "#f90",
+          fz:40,
+          color: "#fff"
+        }
+      });
+
+     
+    </script>
+  </body>
+</html>

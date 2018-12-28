@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+   <meta charset='UTF-8'>
+   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+   <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+   <title>杰哥的Vue</title>
+</head>
+<body>
+       
+    <div id='app'>
+
+      <router-link to="/index">新闻主页</router-link>
+
+      <router-view></router-view>
+
+
+       
+    </div>
+       
+<script src='./vue.js'></script>
+<script src="./node_modules/vue-router/dist/vue-router.js"></script>
+<script>
+
+    // 实现的步骤
+    /***
+      0.引入vue-touter.js文件
+      1.注册两个组件newList 和 newInfo
+      2.然后在newList填写模板，这个模板中内嵌路由的入口
+      3.在页面中设置一个路由入口和路由的出口
+      4.创建路由，并且设置路由的配置项
+      5.在配置/index由于很多个，无法确定个数，所以使用:id表示通配
+      6.在newInfo中获取当前的路由的参数可以通过{{$route.params.id}}
+    */
+
+    const newList={
+      template:`
+        <ul>
+          <li><router-link to="/new/chang">常姐姐</router-link></li>
+          <li><router-link to="/new/wang">王姐姐</router-link></li>
+          <li><router-link to="/new/tang">唐姐姐</router-link></li>
+        </ul>
+      `
+    }
+
+    const newInfo = {
+      template: `
+        <h1>今天除了很冷，其他都好===>{{$route.params.id}}</h1>
+      `
+    }
+
+    const router = new VueRouter({
+      routes:[
+        {path:'/index',component:newList},
+        {path:'/new/:id',component:newInfo}
+      ]
+    });
+       
+   const vm = new Vue({
+       el:'#app',
+       data:{
+            
+       },
+       router
+   });
+       
+</script>
+</body>
+</html>

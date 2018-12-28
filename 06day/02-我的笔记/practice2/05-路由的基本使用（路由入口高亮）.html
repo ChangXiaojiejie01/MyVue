@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <style>
+
+  .router-link-exact-active, 
+  .router-link-active{
+    font-size: 50px;
+    color: crimson;
+  }
+  
+  
+  
+  
+  </style>
+</head>
+
+<body>
+  <div id="app">
+      <router-link to="/">冯小姐</router-link>
+
+    <router-link to="/chang">常姐姐</router-link>
+    <router-link to="/xiang">李大狗</router-link>
+    <router-link to="/wang">王美美</router-link>
+
+    <router-view></router-view>
+
+
+
+  </div>
+  <script src="./vue.js"></script>
+  <script src="./node_modules/vue-router/dist/vue-router.js"></script>
+  <script>
+
+    //创建三个组件
+    const Chang = Vue.component('chang',{
+      template:`
+        <h1>常家最漂亮的小姐姐</h1>
+      `
+    });
+    const Xiang = Vue.component('xiang',{
+      template:`
+        <h1>李家最漂亮的小姐姐</h1>
+      `
+    });
+    const Wang = Vue.component('wang',{
+      template:`
+        <h1>王家最漂亮的小姐姐</h1>
+      `
+    });
+
+    const router = new VueRouter({
+      routes:[
+        {path:"/",redirect:'/chang'},
+        {path:"/chang",component:Chang},
+        {path:"/xiang",component:Xiang},
+        {path:"/wang",component:Wang}
+      ],
+      
+      linkExactActiveClass:"GuShi",
+
+      //模糊匹配项
+      linkActiveClass:"CaoMiao"
+    });
+
+
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        
+      },
+      router
+    })
+  </script>
+</body>
+
+</html>
