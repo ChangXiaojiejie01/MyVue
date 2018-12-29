@@ -25,3 +25,77 @@
  也就是 ajax 的劣势，是不利于： SEO（搜索引擎优化 百度）
 
 ​          服务端渲染
+
+#### 如何使用SPA
+
+##### 使用的技术点
+
+​	1.ajax 使用ajax异步发送请求
+
+​	2.哈希值 根据hash值来使用不同的功能
+
+​	3.hashchange事件 当前hash值发生改变后，就会执行对应的处理函数
+
+实现的思路：
+
+​	1.在html页面中准备标签元素，并且设置href属性
+
+​	2.使用axios发送请求，利用switch实现路由的功能
+
+​	3.switch的判断值为location.hash，并将该过程封装成一个函数fn
+
+​	4.给window注册hashchange事件，调用函数fn
+
+```js
+//html
+  <div id="app">
+    <ul>
+      <li><a href="#/my">我的</a></li>
+      <li><a href="#/find">发现</a></li>
+      <li><a href="#/friend">朋友</a></li>
+    </ul>
+    <div class="text"></div>
+  </div>
+
+//js
+let text = document.querySelector('.text');
+
+let fn = ()=>{
+    //判断location.hash的值
+    switch (location.hash) {
+        case "#/my":
+            console.log('my');
+
+            axios.get('./my.json').then(res=>{
+                text.innerHTML=res.data.content
+            });
+            break;
+        case "#/find":
+            console.log('mfindy');
+
+            axios.get('./find.json').then(res=>{
+                text.innerHTML=res.data.content
+            });
+            break;
+        case "#/friend":
+            console.log('friend');
+
+            axios.get('./friend.json').then(res=>{
+                console.log(res.data.content);
+
+                text.innerHTML=res.data.content
+            });
+            break;
+        default:
+            break;
+    }
+}
+//初始化，刚进入页面调用一次
+fn()
+window.addEventListener('hashchange',fn);
+```
+
+
+
+
+

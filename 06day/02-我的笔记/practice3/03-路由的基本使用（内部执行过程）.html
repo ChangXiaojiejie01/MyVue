@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+
+    <router-link to="/chang">常应常静</router-link>
+    <router-link to="/jie">常清静矣</router-link>
+
+    <router-view></router-view>
+
+  </div>
+  <script src="./vue.js"></script>
+  <script src="./node_modules/vue-router/dist/vue-router.js"></script>
+  <script>
+
+    //实现的步骤
+
+    /*** 
+
+    1.首先引入vue-router.js文件 记住，先引入vue.js文件
+    2.然后创建 两个 组件，分别用const 接收一下，否则无法绑定到路由上
+    3.在组件中写好模板内容
+    4.在#app内创建路由的入口和路由的出口 路由入口的作用？和路由出口的作用
+    5.创建路由 设置配置项 moutes
+    6.配置项是数组，每个配置项是一个对象，对象中有两个属性，path和component
+    7.在vue的实例中绑定路由（很重要）
+
+    **/
+
+    const Chang = {
+      template:`
+        <h1>简写的常</h1>
+      `
+    }
+
+    const Jie = {
+      template:`
+        <h1>简写的杰</h1>
+      `
+    }
+
+  const router = new VueRouter({
+    routes:[
+      {path:'/chang',component:Chang},
+      {path:'/jie',component:Jie}
+    ]
+  });
+
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        
+      },
+      router
+    })
+  </script>
+</body>
+
+</html>
